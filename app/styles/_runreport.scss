@@ -1,0 +1,355 @@
+
+.main {
+    max-width: 96rem;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 1.5rem
+}
+
+.main-l {
+    width: 100%;
+    display: inline-block;
+    box-sizing: border-box;
+    border: 1px solid #dfdfdf;
+    min-height: 15rem
+}
+.info-page .main-ri-ti div {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #000
+}
+.main-l-text {
+    padding: 10px;
+    border-bottom: 1px solid #dfdfdf
+}
+
+.main-l-jz {
+    margin-top: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #dfdfdf
+}
+
+.main-l-jz p {
+    margin-top: 15px;
+    font-size: .8rem;
+    color: #999
+}
+
+.main-l-jz p label {
+    margin-bottom: 5px;
+    display: inline-block
+}
+
+.main-l-jz p input {
+    width: 100%
+}
+
+.main-l-jz h5 {
+    margin: 0;
+    color: #333;
+    font-weight: 100
+}
+
+.main-l-jz .jz-options {
+    margin-bottom: 20px
+}
+
+.main-l-jz .jz-options a {
+    color: #999;
+    font-size: .7rem;
+    padding: 5px 20px;
+    border: 1px solid #dfdfdf;
+    display: inline-block;
+    margin-top: 5px;
+    border-radius: 2px
+}
+
+.main-l-jz .jz-options a.active {
+    color: red;
+    border: 1px solid red
+}
+
+.main-l button {
+    font-size: .7rem
+}
+
+.main-r {
+    width: 100%;
+    margin-top: 20px
+}
+
+.main-r p {
+    margin-top: 15px;
+    font-size: .8rem;
+    color: #999;
+    display: inline-block;
+    width: 20%;
+    margin-right: 15px
+}
+
+.main-r p label {
+    margin-bottom: 5px;
+    display: inline-block
+}
+
+.main-r p input {
+    width: 100%
+}
+
+.main-r h5 {
+    margin: 0;
+    color: #333;
+    font-weight: 100;
+    font-size: 1rem
+}
+
+.main-r .jz-options {
+    margin-bottom: 20px
+}
+
+.main-r .jz-options a {
+    color: #999;
+    font-size: .7rem;
+    padding: 5px 20px;
+    border: 1px solid #dfdfdf;
+    display: inline-block;
+    margin-top: 5px;
+    border-radius: 2px
+}
+
+.main-r .jz-options a.active {
+    color: red;
+    border: 1px solid red
+}
+
+.main-r-item {
+    margin-bottom: 1rem
+}
+
+.main-r-i-chart {
+    padding: 10px;
+    border: 1px solid #dfdfdf;
+    border-top: none
+}
+
+.main-r-col2 {
+    width: 48.6%!important
+}
+
+.main-ris-tip {
+    border: 1px solid #dfdfdf;
+    position: relative;
+    padding: 10px
+}
+
+.main-ris-tip>div {
+    position: relative
+}
+
+.main-ris-tip>div i {
+    position: absolute;
+    right: .5rem;
+    top: 0;
+    bottom: 0;
+    height: 16px;
+    margin: auto
+}
+
+.main .mris-options {
+    display: none;
+    font-size: .6rem;
+    margin-top: 10px
+}
+
+.main .mris-options a {
+    padding: 5px 10px;
+    border: 1px solid #dfdfdf;
+    display: inline-block;
+    margin-top: 5px;
+    border-radius: 2px;
+    color: #999
+}
+
+.main .mris-options a.active {
+    border-color: red;
+    color: red
+}
+
+.main .mris-options p {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    color: #999
+}
+
+.main .mris-options p input {
+    padding: 5px;
+    border-radius: 2px;
+    border: 1px solid #dfdfdf
+}
+
+.yes-btn {
+    width: 100%;
+    margin: 10px 0;
+    text-align: right
+}
+
+.yes-btn button {
+    padding: 5px 15px;
+    background-color: #7cb5ec;
+    color: #fff;
+    border: none;
+    margin-right: 10px;
+    border-radius: 2px
+}
+
+.reset-btn {
+    background-color: #dfdfdf!important;
+    color: #999!important;
+    border-radius: 2px
+}
+
+.Wdate {
+    border: #999 1px solid;
+    height: 20px;
+    background: #fff url("/static/mystatic/images/datePicker.d6bfd22c5e8c.gif?98e50bc29cd2") no-repeat right
+}
+
+.Wdate::-ms-clear {
+    display: none
+}
+
+.WdateFmtErr {
+    font-weight: bold;
+    color: red
+}
+
+.main-tow .main-r-item {
+    width: 32%;
+    display: inline-block;
+    margin-left: 0.7%;
+    margin-right: 0.4%
+}
+
+.main-r-i-chart {
+    position: relative;
+    min-height: 521px
+}
+
+.loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: #fff
+}
+
+.loading img {
+    width: 200px;
+    max-height: 140px;
+    position: absolute;
+    top: 0!important;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto
+}
+
+#fm>div {
+    margin-bottom: 20px
+}
+
+#fm>div select {
+    width: 100%!important
+}
+
+#fm>div input {
+    width: 95%!important
+}
+
+#fm>div .treeview ul {
+    margin: 0;
+    padding: 0
+}
+
+#fm>div .treeview span.icon {
+    margin-left: -12px
+}
+
+.main-ris-table {
+    padding: 0
+}
+
+.main-ris-table>div {
+    width: 100%;
+    display: table
+}
+
+.main-ris-table.t6>div>div {
+    width: 16.9%
+}
+
+.main-ris-table.t4>div>div {
+    width: 25%!important
+}
+
+.main-ris-table.t1>div>div {
+    width: 100%!important
+}
+
+.main-ris-table.t2>div>div {
+    width: 50%!important
+}
+
+.main-ris-table.t5>div>div {
+    width: 16.5%!important
+}
+
+.main-ris-table.t7>div>div {
+    width: 14.2%!important
+}
+
+.main-ris-table.t8>div>div {
+    width: 12.4%!important
+}
+
+.main-ris-table.t9>div>div {
+    width: 11%!important
+}
+
+.main-ris-table.t10>div>div {
+    width: 9.8%!important
+}
+
+.main-ris-table.t11>div>div {
+    width: 9%!important
+}
+
+.main-ris-table.t12>div>div {
+    width: 8.3%!important
+}
+
+.main-ris-table-t div {
+    border-top: none!important;
+    color: #555;
+    font-size: 20px;
+    font-weight: 600
+}
+
+.main-ris-table>div>div {
+    word-break: break-all;
+    width: 33.3%;
+    padding: 10px;
+    box-sizing: border-box;
+    display: table-cell;
+    border-left: 1px solid #dfdfdf;
+    border-top: 1px solid #dfdfdf;
+    margin-left: -4px;
+    font-size: 18px
+}
+
+.main-ris-table>div>div:first-child {
+    margin-left: 0;
+    border-left: none
+}

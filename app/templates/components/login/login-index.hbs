@@ -1,0 +1,37 @@
+<div class="login-index">
+  <h4>登录</h4>
+  <h5 class='text-danger'>{{subtitle}}!</h5>
+  <div class="box-body  mybox-body login">
+    <form class="form-horizontal" >
+      <div class="control-group loginss">
+        <label class="control-label ">
+            <span class="span-top-10">用户名</span></label>
+        <div class="controls">
+          {{input type="text"class="form-control" placeholder="用户名" value=username}}
+        </div>
+
+      </div>
+      <div class="control-group loginss">
+         <label class="control-label">
+            <span class="span-top-10">密码</span></label>
+        <div class="controls">
+          {{input type="password"class="form-control" placeholder="密码" value=userpwd}}
+        </div>
+      </div>
+      <div class="control-group loginzz">
+        <label class="control-label">
+            <span class="span-top-10">验证码</span></label>
+        <div class="controls">
+          <div id="mpanel2"></div>
+        </div>
+      </div>
+      <div class="control-group">
+        <label class="control-label"></label>
+        <div class="controls">
+          <button type="button" class="btn btn-info " id='check-btn' contenteditable="true">登录</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

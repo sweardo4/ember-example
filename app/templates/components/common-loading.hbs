@@ -1,0 +1,13 @@
+{{!-- {{#if isLoading}} {{else}}
+<div class="spinner"></div>
+{{/if}} --}}
+{{#liquid-if isLoading class='fancy-loading'}}
+<div style="text-align:{{al}}">
+ 
+</div>
+{{else}}
+<div style="text-align:{{al}}">
+  <div class="spinner">
+  </div>
+</div>
+{{/liquid-if}}

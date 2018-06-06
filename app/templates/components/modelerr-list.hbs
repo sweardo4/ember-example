@@ -1,0 +1,64 @@
+{{#wrapper-path 
+        title = list.message.title 
+        path1 = list.message.title 
+        path2 = list.message.path 
+        url = list.message.url  class='modelerr-path'}}
+        
+{{/wrapper-path}}
+
+{{#liquid-if islist class="modelerror"}}
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>编号</th>
+      <th>名称</th>
+      <th>故障时间</th>
+      <th>故障模型id</th>
+      <th>故障模型名称</th>
+      <th>故障类型</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+        <td style='text-align:center' colspan="7">
+              {{#common-loading isLoading =list.list al='center'}}{{/common-loading}}
+        </td>
+    </tr>
+    {{#each list.list as |p|}}
+    <tr>
+      <td>{{p.id}}</td>
+      <td>{{p.error_zname}}</td>
+      <td>{{p.error_time}}</td>
+      <td>{{p.model_id}}</td>
+      <td>{{p.model_zname}}</td>
+      <td>{{p.error_type}}</td>
+      <td>
+        <button type="button" class="btn btn-info" {{action "chakan" p.id on="click" }}>查看</button>
+        <button type="button" class="btn btn-danger" {{action "del" p.id on="click" }}>删除</button>
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+ {{#pages-component tab='errormanage' setSome =(action 'setList')}}{{/pages-component}} 
+{{else}}
+
+<table class="table table-bordered">
+      <thead>
+        <tr>
+          {{#each listdata as |p|}}
+          <th>{{p.form_name}}</th>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+         {{#each listdata as |p|}}
+          <td>{{p.form_data}}</td>
+          {{/each}}
+        </tr>
+      </tbody>
+    </table>
+{{/liquid-if}}

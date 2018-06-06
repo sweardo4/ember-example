@@ -1,0 +1,19 @@
+{{#wrapper-path title = model.message.title  
+                path1 = model.message.title 
+                path2 = model.message.path  
+                url = model.message.url }}
+
+{{/wrapper-path}}
+
+
+{{#configdb-list title = model.message.path 
+                 list = model.list  
+                 allJzAction = (action 'allJz')
+                 delAction = (action 'del') 
+                 addAction = (action 'add' )
+                 editAction=(action 'edit')
+                 getAction = (action 'get')
+                 getJzAction = (action 'getJz')}}
+{{/configdb-list}}
+
+

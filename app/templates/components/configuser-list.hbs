@@ -1,0 +1,129 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title" id='action_title'>设备列表</h3>
+          <button class="btn btn-info fr" {{action 'addView' on="click" }}>添加</button>
+        </div>
+        <!-- /.box-header -->
+         {{component 'common/error-danger' iserror=iserror}}
+        {{!-- 列表 --}}
+        <div class="box-body" id="list">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th style="width: 10px">id</th>
+                <th>用户名</th>
+                <th>用户密码</th>
+                <th style="width: 20%">用户邮箱</th>
+                <th>操作</th>
+              </tr>
+               <tr>
+                <td colspan="5" style='text-align:center' >
+                    {{#common-loading isLoading = list al='center'}}{{/common-loading}}
+                </td>
+              </tr>
+              {{#each list as |jz|}}
+              <tr>
+                <td>{{jz.id}}</td>
+                <td>{{jz.user_name}}</td>
+                <td>******</td>
+                <td>{{jz.user_email}}</td>
+                <td>
+                  <button type="button" class="btn btn-info" {{action "chakan" jz.id on="click" }}>查看</button>
+                  <button type="button" class="btn btn-warning" {{action "editView" jz.id on="click" }}>修改</button>
+                  <button type="button" class="btn btn-danger" {{action "del" jz.id on="click" }}>删除</button>
+                </td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
+           {{#pages-component tab='configuser' setSome =(action 'setSome')}}{{/pages-component}} 
+        </div>
+        {{!-- 添加 --}}
+        <div class="box-body hidden mybox-body" id="add">
+            <form class="form-horizontal" {{action "add" on="submit" }}>
+              <div class="control-group">
+                <label class="control-label" >用户名</label>
+                <div class="controls">
+                  {{input type="text"class="form-control" placeholder="用户名" value=user_name}}
+                </div>
+                <span class="bg-danger">(唯一)</span>
+              </div>
+              <div class="control-group">
+                <label class="control-label">用户密码</label>
+                <div class="controls">
+                  {{input type="password" class="form-control" placeholder="用户密码" value=user_pwd}}
+                </div><span class="text-danger">*</span>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >用户邮箱</label>
+                <div class="controls">
+                  {{input type="text" value=user_email class="form-control" placeholder="用户邮箱"}}
+                </div><span class="text-danger">*</span>
+              </div>
+              <div class="control-group">
+                <label class="control-label"></label>
+                <div class="controls">
+                  <button type="submit" class="btn btn-info" contenteditable="true">提交</button>
+                </div>
+              </div>
+            </form>
+        </div>
+         <div class="box-body hidden mybox-body" id="edit">
+            <form class="form-horizontal" {{action "edit" on="submit" }}>
+              <div class="control-group">
+                <label class="control-label" id='id'></label>
+              </div>
+              <div class="control-group">
+                <label class="control-label">用户名</label>
+                <div class="controls">
+                  {{input type="text"class="form-control" placeholder="用户名" value=user_name}}
+                </div>
+                 <span class="bg-danger">(唯一)</span>
+              </div>
+              <div class="control-group">
+                <label class="control-label">用户密码</label>
+                <div class="controls">
+                  {{input type="password"class="form-control" placeholder="用户密码" value=user_pwd}}
+                </div><span class="text-danger">*</span>
+              </div>
+              <div class="control-group">
+                <label class="control-label" >用户邮箱</label>
+                <div class="controls">
+                  {{input type="text" value=user_email class="form-control" placeholder="用户邮箱"}}
+                </div><span class="text-danger">*</span>
+              </div>
+              <div class="control-group">
+                <label class="control-label"></label>
+                <div class="controls">
+                  <button type="submit" class="btn btn-info" contenteditable="true">确认修改</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="box-body hidden mybox-body" id="chakan">
+              <div class="control-group">
+                <label class="control-label"> id : {{id}}</label>
+              </div>
+              <div class="control-group">
+                <label class="control-label">用户名 : {{user_name}}</label>
+               
+                 <span class="bg-danger">(唯一)</span>
+              </div>
+              <div class="control-group">
+                <label class="control-label">用户密码 : ******</label>
+              
+              </div>
+              <div class="control-group">
+                <label class="control-label" >用户邮箱 : {{user_email}}</label>
+              
+              </div>
+           
+          </div>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+</section>

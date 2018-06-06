@@ -1,0 +1,38 @@
+ {{!--
+<div>
+  设备
+  <span style='color:red'>(单设备建模)</span> :
+  <span class='text-primary'>{{jz_zname}}</span>
+</div>
+<div>
+  开始时间 :
+  <span class='text-primary'>{{start_time}}</span>
+</div>
+<div>
+  结束时间 :
+  <span class='text-primary'>{{end_time}}</span>
+</div>
+<div>健康度部件
+  <span style='color:red'>(只在健康度建模使用)</span> :
+  <span class="text-primary">
+    {{#each part_list as |a|}}
+    <span data-params-name='{{a.key}}'>{{a.value}}</span>, {{/each}}
+  </span>
+</div>
+<div>
+  选择的变量 :
+  <span class='text-primary'>
+    {{#each field_list as |a|}}
+    <span data-params-name='{{a.key}}'>{{a.value}}</span>, {{/each}}
+  </span>
+</div>
+--}} 
+{{!-- 您选择的内容 --}}
+{{#each all_params as |p|}}
+  {{#if p.param_code}}
+    <div>
+      {{p.param_zname}} :
+      <span class='text-primary'>{{p.param_zname}}</span>
+    </div>
+  {{/if}}
+{{/each}}

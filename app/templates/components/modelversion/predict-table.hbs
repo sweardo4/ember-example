@@ -1,0 +1,24 @@
+  <p>模型详情表</p>
+   <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>输入变量</th>
+          <th>预测变量</th>
+          <th>模型名称</th>
+          <th>预测点数</th>
+          <th>预测间隔</th>
+          <th>数据开始时间</th>
+          <th>数据结束时间</th>
+          <th>模型创建时间</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each tabledata as |t|}}
+        <tr><td>{{t.id}}</td><td>{{t.field_name}}</td><td>{{t.out_name}}</td>
+          <td>{{t.model_name}}</td><td>{{t.predict_num}}</td><td>{{t.time_gap}}</td>
+          <td>{{t.start_time}}</td><td>{{t.end_time}}</td><td>{{t.model_time}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>

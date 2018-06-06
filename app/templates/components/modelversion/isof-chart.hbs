@@ -1,0 +1,4 @@
+<p>模型图表</p>
+{{#each chartdata as |t|}}
+    {{echarts-chart option=option onChartReady=(action 'onChartReady' t) }} 
+{{/each}}

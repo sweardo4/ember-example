@@ -1,0 +1,33 @@
+{{!-- 所选设备变量列表以及部件列表 --}}
+    <div>
+      <label>{{title}}</label>
+    </div>
+   {{!-- 普通变量组件 --}}
+  {{#each list as |jz|}}
+    <div class="accordion-group ac-jz-show">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-jzid='{{jz.id}}' data-toggle="collapse" {{action "getJzParams" jz.id jz.jz_zname on='click'
+          }} data-parent="#accordion2" href="#jz{{jz.id}}">
+          {{jz.jz_zname}}
+        </a>
+      </div>
+      <div id="jz{{jz.id}}" class="accordion-body collapse " style="height: 0px;" {{action 'getParams' on='click' preventDefault=false}}>
+        <div class="part-label">
+          <label for="">变量选择</label>
+        </div>
+        <div class="accordion-inner jz-checkbox">
+          <div class="checkbox">
+            <label class='loading'>loading...</label>
+          </div>
+        </div>
+        <div class="part-label">
+          <label for="">部件选择</label>
+        </div>
+        <div class="accordion-inner part-checkbox">
+          <div class="checkbox">
+            <label class="loading">loading...</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/each}}

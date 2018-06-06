@@ -1,0 +1,14 @@
+{{!-- {{outlet}} --}}
+{{!-- {{liquid-outlet}} --}}
+
+{{!-- {{#if isLogin}}
+{{component 'login/login-index' getUser = (action 'getUser')  setTemp = (action 'setTemp') class='login-shadow'}}
+ {{/if}} --}}
+
+ {{#liquid-if isLogin class='is-login'}}
+ {{liquid-outlet }}
+ {{else}}
+ {{component 'login/login-index' getUser = (action 'getUser')  setTemp = (action 'setTemp') class='login-shadow '}}
+ {{/liquid-if}}
+
+ 

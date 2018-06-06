@@ -1,0 +1,200 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title" id='action_title'>建模方法设置</h3>
+          <button class="btn btn-info fr" {{action 'addView'}}>添加</button>
+        </div>
+       {{component 'common/error-danger' iserror=iserror}}
+        <!-- /.box-header -->
+        <div class="box-body">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th style="width: 10px">id</th>
+                <th>建模方法名</th>
+                <th>函数名</th>
+                <th>参数IDS</th>
+                <th>结果表名</th>
+                <th>来源数据类型</th>
+                <th>操作</th>
+              </tr>
+              <tr>
+                <td colspan="7" style='text-align:center' >
+                    {{#common-loading isLoading = list al='center'}}{{/common-loading}}
+                </td>
+              </tr>
+              {{#each list as |part|}}
+              <tr>
+                <td>{{part.id}}</td>
+                <td>{{part.method_typezname}}</td>
+                <td>{{part.method_function}}</td>
+                <td>{{part.param_znames}}</td>
+                <td>{{part.method_table}}</td>
+                <td>{{part.method_type}}</td>
+                <td>
+                  <button type="button" class="btn btn-info" {{action "chakan" part.id on="click" }}>查看</button>
+                  <button type="button" class="btn btn-warning" {{action "editView" part.id on="click" }}>修改</button>
+                  <button type="button" class="btn btn-danger" {{action "del" part.id on="click" }}>删除</button>
+                </td>
+              </tr>
+              {{/each}}
+
+            </tbody>
+          </table>
+           {{#pages-component tab='configmethod' setSome =(action 'setSome')}}{{/pages-component}} 
+        </div>
+        <!-- /.box-body -->
+
+
+        <div class="box-body hidden mybox-body" id="add">
+          <form class="form-horizontal" {{action "add" on="submit" }}>
+            <div class="control-group">
+              <label class="control-label">建模方法名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="建模方法名" value=method_typezname}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">函数名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="函数名" value=method_function}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">参数</label>
+              <div class="controls">
+                {{!-- {{input type="text"class="form-control" placeholder="参数IDS" value=method_params}} --}}
+                <select multiple="multiple" size="4" {{action 'changeState' on='change' }}>
+                  {{#each methodParams as |pa|}}
+                  <option value="{{pa.id}}"> {{pa.param_zname}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">结果表名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="结果表名" value=method_table}}
+              </div>
+              <span class="text-danger">*</span>
+
+            </div>
+            <div class="control-group">
+              <label class="control-label">来源数据类型</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="来源数据类型" value=method_type}}
+              </div>
+              <span class="text-danger">*</span>
+
+            </div>
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-info" contenteditable="true">提交</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+
+        <div class="box-body hidden mybox-body" id="edit">
+          <form class="form-horizontal" {{action "edit" on="submit" }}>
+            <div class="control-group">
+              <label class="control-label" id='id'>{{id}}</label>
+            </div>
+            <div class="control-group">
+              <label class="control-label">建模方法名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="建模方法名" value=method_typezname}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">函数名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="函数名" value=method_function}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">参数勾选</label>
+              <div class="controls">
+                {{!-- {{input type="text"class="form-control" placeholder="参数IDS" value=method_params}} --}}
+                <select multiple="multiple" size="4" {{action 'changeState' on='change' }}>
+                  {{#each methodParams as |pa|}}
+                  <option value="{{pa.id}}"> {{pa.param_zname}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+   
+          <div class="control-group">
+              <label class="control-label">当前勾选参数</label>
+              <div class="controls">
+                {{param_znames}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">结果表名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="结果表名" value=method_table}}
+              </div>
+              <span class="text-danger">*</span>
+
+            </div>
+            <div class="control-group">
+              <label class="control-label">来源数据类型</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="来源数据类型" value=method_type}}
+              </div>
+              <span class="text-danger">*</span>
+
+            </div>
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-info" contenteditable="true">确认修改</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="box-body hidden" id="chakan">
+          <div class="control-group">
+            <label class="control-label"> id : {{id}}</label>
+          </div>
+          <div class="control-group">
+            <label class="control-label">建模方法名 : {{method_typezname}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">函数名 : {{method_function}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">参数 : {{param_znames}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">结果表名 : {{method_table}}</label>
+
+          </div>
+           <div class="control-group">
+            <label class="control-label">来源数据类型 : {{method_type}}</label>
+
+          </div>
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+
+</section>

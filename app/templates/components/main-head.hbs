@@ -1,0 +1,33 @@
+<div class="raw">
+  <div class="col-xs-12 col-md-12">
+    <div class="head-title">
+      <div>基于人工智能技术的高端装备预测性维修平台</div>
+    </div>
+    <div class="head-lista">
+      <div {{action 'reload' on = 'click'}}>
+        {{#link-to "main.newjm" }}
+        <i class="icon iconfont icon-shop"></i>
+        <p>数据建模</p>
+        {{/link-to}} {{#link-to "main.resultmodel" }}
+        <i class="icon iconfont icon-circle"></i>
+        <p>建模版本</p>
+        {{/link-to}} {{#link-to "main.monitor" }}
+        <i class="icon iconfont icon-barcode"></i>
+        <p>实时监测</p>
+        {{/link-to}} {{#link-to "main.modelerror" }}
+        <i class="icon iconfont icon-form"></i>
+        <p>故障诊断</p>
+        {{/link-to}} {{#link-to "main.runreport" }}
+        <i class="icon iconfont icon-weishiyong"></i>
+        <p>运行报告</p>
+        {{/link-to}}
+      </div>
+    </div>
+    <div style="text-align:right;">
+      {{#link-to "admin.configjz"}}
+      <span style='display:inline-block;padding-bottom: 20px;font-size:18px;'>配置管理</span>
+      {{/link-to}}
+    </div>
+
+  </div>
+</div>

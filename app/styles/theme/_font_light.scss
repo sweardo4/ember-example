@@ -1,0 +1,25 @@
+body {
+  background-color: #fff;
+  color: #000;
+}
+
+.hd-admin {
+  background-color: #fff;
+  color: #000;
+}
+
+.head-title {
+  // background-color: #000;
+  background: url(images/top.jpg) center center no-repeat;
+  height: 250px;
+  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+ 
+}
+
+.head-lista>div a {
+  color: #000;
+}

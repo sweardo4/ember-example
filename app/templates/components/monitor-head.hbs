@@ -1,0 +1,29 @@
+<style>
+  .echarts-chart {
+    width: 100%;
+    height: 400px;
+  }
+</style>
+{{!-- {{isrun}}
+<button {{action "closeSocket" '1' on="click" }}>closeSocket</button>
+<button {{action "runSocket" '2' on="click" }}>runsocket</button> --}}
+
+{{#nothing-data isNothing = isNothing}}{{/nothing-data}}
+{{#common-loading isLoading = isLoading al='center'}}{{/common-loading}}
+
+{{#each allData as |a|}}
+  {{#if a.fields}}
+  <div class="realtime-item">
+    <h5>{{a.monitor_title}}</h5>
+    <div class="realtime-item-danger text-warning">{{monitor-decide-field a.fields}}</div>
+    {{#each a.fields as |d|}}
+                {{echarts-chart option=option 
+                      onChartReady=(action 'onChartReady' a d )
+                      theme = theme
+                      beforeSetup=(action 'beforeSetup')
+                      afterSetup=(action 'afterSetup')
+                  }}
+    {{/each}}
+  </div>
+  {{/if}}
+{{/each}}

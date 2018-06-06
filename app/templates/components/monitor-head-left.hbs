@@ -1,0 +1,6 @@
+<ul class="nav nav-list nav-list-left" >
+	<li class="nav-header">设备列表</li>
+    {{#each list as |jz|}}
+	<li><a href="#{{jz.jz_zname}}" {{action "realTimeMonitor" jz.jz_name on="click" }}>{{jz.jz_zname}}</a></li>
+	{{/each}}
+</ul>

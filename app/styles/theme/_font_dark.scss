@@ -1,0 +1,26 @@
+
+body {
+	background-color: #333333;
+	color: #fff;
+}
+
+.hd-admin{
+    background-color: #333333;
+	color: #fff;
+}
+
+.head-title {
+    // background-color: #333333;
+    background: url(images/top.jpg) center center no-repeat;
+    height: 250px;
+    
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+   
+}
+
+.head-lista > div a{
+    color:#fff;
+}

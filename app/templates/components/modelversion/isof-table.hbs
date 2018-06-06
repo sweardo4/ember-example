@@ -1,0 +1,29 @@
+  <p>模型详情表</p>
+   <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>变量id</th>
+          <th>变量</th>
+          <th>阈值</th>
+          <th>部件或变量</th>
+          <th>数据开始时间</th>
+          <th>数据结束时间</th>
+          <th>创建时间</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each tabledata as |t|}}
+        <tr>
+          <td>{{t.id}}</td>
+          <td>{{t.field_ids}}</td>
+          <td>{{t.field_name}}</td>
+          <td>{{t.model_thd}}</td>
+          <td>{{slice-part t.model_name}}</td>
+          <td>{{t.start_time}}</td>
+          <td>{{t.end_time}}</td>
+          <td>{{t.isof_time}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>

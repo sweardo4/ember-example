@@ -1,0 +1,439 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title" id='action_title'>实时监测模块设置</h3>
+          <button class="btn btn-info fr" {{action 'addView'}}>添加</button>
+        </div>
+        <!-- /.box-header -->
+        {{component 'common/error-danger' iserror=iserror}}
+        <div class="box-body">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th style="width: 10px">id</th>
+                <th>实时监测模块英文名</th>
+                <th>实时监测模块中文名</th>
+                <th>标题</th>
+                <th>是否显示阈值</th>
+                <th>周期性</th>
+                <th>数据量</th>
+                <th>是否监测</th>
+                {{!-- <th>对应建模算法英文</th> --}}
+                <th>对应建模算法中文</th>
+                <th>所属用户</th>
+                <th>获取当前模型变量的方法</th>
+                <th>来源数据类型</th>
+                <th>来源数据的处理方法</th>
+                <th>是否统一监测</th>
+                <th>统一监测图类option</th>
+                <th>操作</th>
+              </tr>
+              <tr>
+                <td colspan="17" style='text-align:center' >
+                    {{#common-loading isLoading = list al='center'}}{{/common-loading}}
+                </td>
+              </tr>
+              {{#each list as |monitor|}}
+              <tr>
+                <td>{{monitor.id}}</td>
+                <td>{{monitor.monitor_name}}</td>
+                <td>{{monitor.monitor_zname}}</td>
+                <td>{{monitor.monitor_title}}</td>
+                <td>{{#if monitor.monitor_usethd}}是{{else}}否{{/if}}</td>
+                <td>{{monitor.redisdata_period}}</td>
+                <td>{{monitor.redisdata_datanum}}</td>
+                <td>{{#if monitor.monitor_isuse}}是{{else}}否{{/if}}</td>
+                {{!-- <td>{{monitor.method_id}}</td> --}}
+                <td>{{monitor.method_zname}}</td>
+                <td>{{monitor.user_id}}</td>
+                <td>{{monitor.monitor_getfields}}</td>
+                <td>{{monitor.redisdata_type}}</td>
+                <td>{{monitor.monitor_getdatas}}</td>
+
+                <td>{{#if monitor.monitor_isunite}}是{{else}}否{{/if}}</td>
+                <td>{{slice-str monitor.monitor_chartopts 20}}</td>
+
+                <td>
+                  <button type="button" class="btn btn-info" {{action "chakan" monitor.id on="click" }}>查看</button>
+                  <button type="button" class="btn btn-warning" {{action "editView" monitor.id on="click" }}>修改</button>
+                  <button type="button" class="btn btn-danger" {{action "del" monitor.id on="click" }}>删除</button>
+                </td>
+              </tr>
+              {{/each}}
+
+            </tbody>
+          </table>
+           {{#pages-component tab='configmonitor' setSome =(action 'setSome')}}{{/pages-component}} 
+        </div>
+        <!-- /.box-body -->
+
+
+        <div class="box-body hidden mybox-body" id="add">
+          <form class="form-horizontal" {{action "add" on="submit" }}>
+            <div class="control-group">
+              <label class="control-label">实时监测模块英文名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="实时监测模块英文名" value=monitor_name}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">实时监测模块中文名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="实时监测模块中文名" value=monitor_zname}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">标题</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="标题" value=monitor_title}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">是否显示阈值</label>
+              <div class="controls">
+                <div class="radio myradio">
+                  <label class="radio-inline">
+                    <input type="radio" name="isy" value="1" {{action "getRadioYz" 1 on="change" }} checked>是
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="isy" {{action "getRadioYz" 0 on="change" }} value="0">否
+                  </label>
+                </div>
+                {{!-- {{input type="text" class="form-control" placeholder="是否显示阈值" value=monitor_usethd}} --}}
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">周期性</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="周期性" value=monitor_period}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">数据量</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="数据量" value=monitor_datanum}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">是否监测</label>
+              <div class="controls">
+                <div class="radio myradio">
+                  <label class="radio-inline">
+                    <input type="radio" name="isj" value="1" {{action "getRadioJc" 1 on="change" }} checked>是
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="isj" {{action "getRadioJc" 0 on="change" }} value="0">否
+                  </label>
+                </div>
+                {{!-- {{input type="password" class="form-control" placeholder="是否监测" value=monitor_isuse}} --}}
+              </div>
+            </div>
+            {{!-- <div class="control-group">
+              <label class="control-label">对应建模算法id</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="对应建模算法英文" value=method_id}}
+              </div>
+              <span class="text-danger">*</span>
+            </div> --}}
+            <div class="control-group">
+              <label class="control-label">对应建模算法中文</label>
+              <div class="controls">
+                {{!-- {{input type="text" class="form-control" placeholder="对应建模算法中文" value=method_zname}} --}}
+                <select {{action "bindSelectSF" on="change" }}>
+                  <option value="" selected>请选择</option>
+                  {{#each sfData as |sf|}}
+                  <option value={{sf.id}}>{{sf.method_typezname}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">所属用户</label>
+              <div class="controls">
+                <select {{action "bindSelectJz" 'select_add' on="change" }} id="select_add">
+                  <option value="" selected>请选择</option>
+                  {{#each jzData as |jz|}}
+                  <option value={{jz.user_id}}>{{jz.user_id}}</option>
+                  {{/each}}
+                </select>
+                <span class="text-danger">*</span>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">获取当前模型变量的方法</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="获取当前模型变量的方法" value=monitor_getfields}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">来源数据类型</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="来源数据类型" value=redisdata_type}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">来源数据处理方法</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="来源数据处理方法" value=monitor_getdatas}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">变量是否统一监测</label>
+              <div class="controls">
+                <div class="radio myradio">
+                  <label class="radio-inline">
+                    <input type="radio" name="isfj" value="1" {{action "getRadioFJc" 1 on="change" }} checked>是
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="isfj" {{action "getRadioFJc" 0 on="change" }} value="0">否
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">统一监测option</label>
+              <div class="controls">
+                 {{textarea value=monitor_chartopts  placeholder="统一监测option" class="col-xs-12 col-md-9" }}
+              </div> <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-info" contenteditable="true">提交</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+
+        <div class="box-body hidden mybox-body" id="edit">
+          <form class="form-horizontal" {{action "edit" on="submit" }}>
+            <div class="control-group">
+              <label class="control-label" id='id'></label>
+            </div>
+            <div class="control-group">
+              <label class="control-label">实时监测模块英文名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="实时监测模块英文名" value=monitor_name}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">实时监测模块中文名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="实时监测模块中文名" value=monitor_zname}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">标题</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="标题" value=monitor_title}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">是否显示阈值</label>
+              <div class="controls">
+                <div class="radio myradio">
+                  <label class="radio-inline">
+                    <input type="radio" name="isy" value="1" {{action "getRadioYz" 1 on="change" }} checked>是
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="isy" {{action "getRadioYz" 0 on="change" }} value="0">否
+                  </label>
+                </div>
+                {{!-- {{input type="text" class="form-control" placeholder="是否显示阈值" value=monitor_usethd}} --}}
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">周期性</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="周期性" value=monitor_period}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">数据量</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="数据量" value=monitor_datanum}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">是否监测</label>
+              <div class="controls">
+                <div class="radio myradio">
+                  <label class="radio-inline">
+                    <input type="radio" name="isj" value="1" {{action "getRadioJc" 1 on="change" }} checked>是
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="isj" {{action "getRadioJc" 0 on="change" }} value="0">否
+                  </label>
+                </div>
+                {{!-- {{input type="password" class="form-control" placeholder="是否监测" value=monitor_isuse}} --}}
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">选择算法</label>
+              <div class="controls">
+                {{!-- {{input type="text" class="form-control" placeholder="对应建模算法英文" value=method_id}} --}}
+
+                <select {{action "bindSelectSF" on="change" }}>
+                  <option value="" selected>请选择</option>
+                  {{#each sfData as |sf|}}
+                  <option value={{sf.id}}>{{sf.method_name}}</option>
+                  {{/each}}
+                </select>
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">对应建模算法中文</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="对应建模算法中文" value=method_zname}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">所属用户</label>
+              <div class="controls">
+                <select {{action "bindSelectJz" 'select_edit' on="change" }} id="select_edit">
+                  <option value="" selected>请选择</option>
+                  {{#each jzData as |jz|}}
+                  <option value={{jz.user_id}}>{{jz.user_id}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">获取当前模型变量的方法</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="获取当前模型变量的方法" value=monitor_getfields}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">来源数据类型</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="来源数据类型" value=redisdata_type}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">来源数据处理方法</label>
+              <div class="controls">
+                {{input type="text" class="form-control" placeholder="来源数据处理方法" value=monitor_getdatas}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">变量是否统一监测</label>
+              <div class="controls">
+                <div class="radio myradio">
+                  <label class="radio-inline">
+                    <input type="radio" name="isfj" value="1" {{action "getRadioFJc" 1 on="change" }} checked>是
+                  </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="isfj" {{action "getRadioFJc" 0 on="change" }} value="0">否
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">统一监测option</label>
+              <div class="controls">
+                 {{textarea value=monitor_chartopts  placeholder="统一监测option" class="col-xs-12 col-md-9" }}
+              </div> <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-info" contenteditable="true">确认修改</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="box-body hidden" id="chakan">
+          <div class="control-group">
+            <label class="control-label"> id : {{id}}</label>
+          </div>
+          <div class="control-group">
+            <label class="control-label">实时监测模块英文名 : {{monitor_name}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">实时监测模块中文名 : {{monitor_zname}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">标题 : {{monitor_title}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">是否显示阈值 : {{#if monitor_usethd}}是{{else}}否{{/if}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">周期性 : {{monitor_period}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">数据量 : {{monitor_datanum}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">是否监测 : {{#if monitor_isuse}}是{{else}}否{{/if}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">对应建模算法id : {{method_id}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">对应建模算法中文 : {{method_zname}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">所属用户 : {{user_id}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">获取当前模型变量的方法 : {{monitor_getfields}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">来源数据类型 : {{redisdata_type}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">来源数据处理方法 : {{monitor_getdatas}}</label>
+          </div>
+
+            <div class="control-group">
+            <label class="control-label">变量是否统一监测 : {{#if monitor_isunite}}是{{else}}否{{/if}}</label>
+          </div>
+           <div class="control-group">
+            <label class="control-label">统一监测option : <pre>{{monitor_getdatas}}</pre></label>
+          </div>
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+
+</section>

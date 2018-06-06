@@ -1,0 +1,161 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title" id='action_title'>参数设置</h3>
+          <button class="btn btn-info fr" {{action 'addView'}}>添加</button>
+        </div>
+        <!-- /.box-header -->
+         {{component 'common/error-danger' iserror=iserror}}
+        <div class="box-body">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th style="width: 10px">id</th>
+                <th>参数名称</th>
+                <th>参数含义</th>
+                <th>参数类型</th>
+                <th>参数前端组件</th>
+                <th>操作</th>
+              </tr>
+              <tr>
+                <td colspan="6" style='text-align:center' >
+                    {{#common-loading isLoading = list al='center'}}{{/common-loading}}
+                </td>
+              </tr>
+              {{#each list as |part|}}
+              <tr>
+                <td>{{part.id}}</td>
+                <td>{{part.param_name}}</td>
+                <td>{{part.param_zname}}</td>
+                <td>{{part.param_type}}</td>
+                <td>{{slice-str part.param_code 20}}</td>
+                <td>
+                  <button type="button" class="btn btn-info" {{action "chakan" part.id on="click" }}>查看</button>
+                  <button type="button" class="btn btn-warning" {{action "editView" part.id on="click" }}>修改</button>
+                  <button type="button" class="btn btn-danger" {{action "del" part.id on="click" }}>删除</button>
+                </td>
+              </tr>
+              {{/each}}
+
+            </tbody>
+          </table>
+           {{#pages-component tab='configparam' setSome =(action 'setSome')}}{{/pages-component}} 
+        </div>
+        <!-- /.box-body -->
+  
+        <div class="box-body hidden mybox-body" id="add">
+          <form class="form-horizontal" {{action "add"  on="submit"  }}>
+            <div class="control-group">
+              <label class="control-label">参数名称</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="参数名称" value=param_name}}
+              </div>
+               <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">参数含义</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="参数含义" value=param_zname}}
+              </div>
+               <span class="text-danger">*</span>
+            </div>
+
+
+            <div class="control-group">
+              <label class="control-label">参数类型</label>
+              <div class="controls">
+                  {{input type="text"class="form-control" placeholder="参数类型" value=param_type}}
+              </div>
+               <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">参数前端组件</label>
+              <div class="controls">
+                {{!-- {{input type="text" class="form-control"  value=param_code}} --}}
+                 {{textarea value=param_code  placeholder="参数前端组件" class="col-xs-12 col-md-9" }}
+              </div>
+               <span class="text-danger">*</span>
+             
+            </div>
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-info" contenteditable="true">提交</button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+
+        <div class="box-body hidden mybox-body" id="edit">
+          <form class="form-horizontal" {{action "edit" on="submit" }}>
+            <div class="control-group">
+              <label class="control-label" id='id'>{{id}}</label>
+            </div>
+             <div class="control-group">
+              <label class="control-label">参数名称</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="参数名称" value=param_name}}
+              </div>
+               <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">参数含义</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="参数含义" value=param_zname}}
+              </div>
+               <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">参数类型</label>
+              <div class="controls">
+                  {{input type="text"class="form-control" placeholder="参数类型" value=param_type}}
+              </div> <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">参数前端组件</label>
+              <div class="controls">
+                {{!-- {{input type="text"class="form-control" placeholder="参数前端组件" value=param_code}} --}}
+                 {{textarea value=param_code  placeholder="参数前端组件" class="col-xs-12 col-md-9" }}
+              </div> <span class="text-danger">*</span>
+             
+            </div>
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-info" contenteditable="true">确认修改</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="box-body hidden" id="chakan">
+          <div class="control-group">
+            <label class="control-label"> id : {{id}}</label>
+          </div>
+          <div class="control-group">
+            <label class="control-label">参数名称 : {{param_name}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">参数含义 : {{param_zname}}</label>
+
+          </div>
+          <div class="control-group">
+            <label class="control-label">参数类型 : {{param_type}}</label>
+
+          </div>
+           <div class="control-group">
+            <label class="control-label">参数前端组件 : <pre>{{param_code}}</pre> </label>
+          </div>
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+
+</section>
+
+

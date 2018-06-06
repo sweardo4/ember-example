@@ -1,0 +1,30 @@
+<div class="newmodel-main-l ">
+  <div class="accordion" id="accordion2">
+    {{!-- 预测变量组件 --}}
+    {{!-- 建模参数 --}}
+    {{#unless all_params}}
+    <div class="text-center text-warning">请选择建模算法!</div>
+    {{/unless}}
+   {{#common-loading isLoading = isLoading al='center'}}{{/common-loading}}
+
+
+   {{#liquid-if all_params class='fancy-loading'}}
+    {{#each all_params as |params|}}
+      {{#if params.param_code}}
+        {{component params.param_code title=params.param_zname  tid=params.param_name   method_id=method_id
+                                    getJzAction = getJzAction
+                                    getAllParts = getAllParts
+                                    getModelfieldAction = getModelfieldAction
+                                    setGlobalParams = setGlobalParams
+                                    getGlobalParams = getGlobalParams
+                                    
+                                    }}
+      {{/if}}
+    {{/each}}
+    {{else}}
+
+     {{/liquid-if}}
+  </div>
+  
+</div>
+

@@ -1,0 +1,200 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title" id='action_title'>部件设置</h3>
+          <button class="btn btn-info fr" {{action 'addView'}}>添加</button>
+        </div>
+        <!-- /.box-header -->
+         {{component 'common/error-danger' iserror=iserror}}
+        <div class="box-body">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th style="width: 10px">id</th>
+                <th>部件英文名</th>
+                <th>部件中文名</th>
+                <th>子节点id</th>
+                <th>数据表</th>
+                <th>所属建模方法</th>
+                <th>操作</th>
+              </tr>
+               <tr>
+                <td colspan="7" style='text-align:center' >
+                    {{#common-loading isLoading = list al='center'}}{{/common-loading}}
+                </td>
+              </tr>
+              {{#each list as |part|}}
+              <tr>
+                <td>{{part.id}}</td>
+                <td>{{part.part_name}}</td>
+                <td>{{part.part_zname}}</td>
+                <td>{{part.part_son_id}}</td>
+                <td>{{part.table_zname}}</td>
+                <td>{{part.monitor_zname}}</td>
+
+                <td>
+                  <button type="button" class="btn btn-info" {{action "chakan" part.id on="click" }}>查看</button>
+                  <button type="button" class="btn btn-warning" {{action "editView" part.id on="click" }}>修改</button>
+                  <button type="button" class="btn btn-danger" {{action "del" part.id on="click" }}>删除</button>
+                </td>
+              </tr>
+              {{/each}}
+
+            </tbody>
+          </table>
+          {{#pages-component tab='configpart' setSome =(action 'setSome')}}{{/pages-component}} 
+        </div>
+        <!-- /.box-body -->
+      
+        <div class="box-body hidden mybox-body" id="add">
+          <form class="form-horizontal" {{action "add" on="submit" }}>
+            <div class="control-group">
+              <label class="control-label">部件英文名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="部件英文名" value=part_name}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">部件中文名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="部件中文名" value=part_zname}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+
+
+            <div class="control-group">
+              <label class="control-label">子部件</label>
+              <div class="controls">
+                <select multiple="multiple" size="4" {{action "bindSelectPart"  on="change" }} >
+                  {{#each partData as |part|}}
+                  <option value={{part.id}}>{{part.part_zname}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">数据表</label>
+              <div class="controls">
+                <select {{action "bindSelectPartT"  on="change" }} >
+                  <option value="" selected>请选择</option>
+                  {{#each tableData as |table|}}
+
+                  <option value={{table.id}}>{{table.table_zname}}</option>
+                  {{/each}}
+                </select>
+                <span class="text-danger">*</span>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">所属建模方法</label>
+              <div class="controls">
+                <select {{action "bindSelectMonitor"  on="change" }} >
+                  <option value="" selected>请选择</option>
+                  {{#each monitorData as |monitor|}}
+                  <option value={{monitor.id}}>{{monitor.method_typezname}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-info" contenteditable="true">提交</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="box-body hidden mybox-body" id="edit">
+          <form class="form-horizontal" {{action "edit" on="submit" }}>
+            <div class="control-group">
+              <label class="control-label" id='id'></label>
+            </div>
+            <div class="control-group">
+              <label class="control-label">部件英文名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="部件英文名" value=part_name}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">部件中文名</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="部件中文名" value=part_zname}}
+              </div>
+              <span class="text-danger">*</span>
+            </div>
+
+            <div class="control-group">
+              <label class="control-label">子部件选择</label>
+              <div class="controls">
+                <select multiple="multiple" size="4" {{action "bindSelectPart"  on="change" }} >
+                  {{#each partData as |part|}}
+                  <option value={{part.id}}>{{part.part_zname}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">数据表</label>
+              <div class="controls">
+                <select {{action "bindSelectPartT"  on="change" }} >
+                  <option value="" selected>请选择</option>
+                  {{#each tableData as |table|}}
+
+                  <option value={{table.id}}>{{table.table_zname}}</option>
+                  {{/each}}
+                </select>
+                <span class="text-danger">*</span>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label">所属建模方法</label>
+              <div class="controls">
+                <select {{action "bindSelectMonitor"  on="change" }} >
+                  <option value="" selected>请选择</option>
+                  {{#each monitorData as |monitor|}}
+                  <option value={{monitor.id}}>{{monitor.method_typezname}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-info" contenteditable="true">确认修改</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="box-body hidden" id="chakan">
+          <div class="control-group">
+            <label class="control-label"> id : {{id}}</label>
+          </div>
+          <div class="control-group">
+            <label class="control-label">部件英文名 : {{part_name}}</label>
+          </div>
+          <div class="control-group">
+            <label class="control-label">部件中文名 : {{part_zname}}</label>
+          </div>
+          <div class="control-group">
+            <label class="control-label">子部件 : {{part_son_id}}</label>
+          </div>
+          <div class="control-group">
+            <label class="control-label">table_id : {{table_zname}}</label>
+          </div>
+           <div class="control-group">
+            <label class="control-label">所属建模方法 : {{method_id}}</label>
+          </div>
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+
+</section>

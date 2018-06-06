@@ -1,0 +1,63 @@
+{{#wrapper-path 
+        title = list.message.title 
+        path1 = list.message.title 
+        path2 = list.message.path 
+        url = list.message.url }}
+{{/wrapper-path}}
+
+{{#liquid-if isload  class="modelerror"}}
+      {{component tablename  tabledata=tabledata class='modelvinfo'}}
+      {{component chartname  chartdata=chartdata class='modelvinfo'}}
+
+     {{#common-loading isLoading=isnoload  al='center'}}{{/common-loading}}
+{{else}}
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>编号</th>
+      <th>建模名称</th>
+      <th>建模时间</th>
+      <th>设备名称</th>
+      <th>建模类型</th>
+      <th>建模类型名</th>
+      <th>建模方法</th>
+      <th>模型数据开始时间</th>
+      <th>模型数据结束时间</th>
+      <th>操作用户</th>
+      <th>变量</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+            <td colspan="12" style='text-align:center' >
+                    {{#common-loading isLoading = list.list al='center'}}{{/common-loading}}
+            </td>
+        </tr>
+    {{#each list.list as |p|}}
+    <tr>
+      <td>{{p.id}}</td>
+      <td>{{p.model_methodzname}}</td>
+      <td>{{p.model_time}}</td>
+      <td>{{p.jz_name}}</td>
+      <td>{{p.model_type}}</td>
+      <td>{{p.model_typezname}}</td>
+      <td>{{p.model_methodid}}</td>
+      <td>{{p.start_time}}</td>
+      <td>{{p.end_time}}</td>
+      <td>{{p.user_name}}</td>
+      <td>{{p.field_znames}}</td>
+      <td>
+        <button type="button" class="btn btn-info" {{action "chakan" p.id p.model_type on="click" }}>查看</button>
+        <button type="button" class="btn btn-warning" {{action "editname" p.id on="click" }}>重命名</button>
+        <button type="button" class="btn btn-danger" {{action "del" p.id on="click" }}>删除</button>
+        {{#if p.model_isuse}} {{else}}
+        <button type="button" class="btn btn-success" {{action "edit" p.id on="click" }}>使用当前模型</button>{{/if}}
+      </td>
+    </tr>
+    {{/each}}
+  </tbody>
+</table>
+{{#pages-component tab='resultmodel' setSome =(action 'setList')}}{{/pages-component}} 
+
+{{/liquid-if}}

@@ -1,0 +1,58 @@
+<div class="newmodel-main" id='nm-body-rader'>
+  <!-- Nav tabs -->
+  <div>
+   {{#common-loading isLoading = list al='center'}}{{/common-loading}}
+  </div>
+  {{#liquid-if list class='fancy-loading'}}
+  <ul class="nav nav-tabs" role="tablist">
+    {{#each list as |r|}}
+    <li role="presentation">
+      <a href="#{{r.method_function}}" aria-controls="{{r.method_function}}" {{action 'setPartAction' r.id  r.method_function  on='click' }} role="tab"
+        data-method-id='{{r.id}}' data-toggle="tab">{{r.method_typezname}}</a>
+    </li>
+   {{/each}}
+  </ul>
+  {{else}}
+  {{/liquid-if}}
+  <!-- Tab panes -->
+  <div class="tab-content " >
+    {{#each list as |r|}} {{#if r.method_function}}
+    <div role="tabpanel" class="tab-pane" id="{{r.method_function}}">
+      {{!-- <h3>您选择的内容</h3>
+      {{#newmodel-main-show  method_id=r.id all_params=all_params 
+                             method_name = method_name
+                              }}{{/newmodel-main-show}} --}}
+
+      <h3>建模结果</h3>
+      <div id='{{r.method_function}}_end'>
+          {{#common-loading isLoading = isLoading al='left'}}{{/common-loading}}
+          {{#if labeldata}}
+          {{#each labeldata as |lab|}}
+               {{echarts-chart option=option 
+                      onChartReady=(action 'onChartReady' lab  r.method_typezname )
+                  }}
+                {{/each}}
+          {{/if}}
+
+          {{#if isTree}}
+          <p class="text-primary">决策树建模成功</p>
+            {{echarts-chart option=treeOption}}
+          {{/if}}
+      </div>
+      {{#if cannot}}
+      <button type="button"  class="btn btn-info" {{action "newModelBtn"  r.method_function r.id on="click" }}>新建{{r.method_typezname}}模型</button>
+      {{else}}
+       <button type="button"  class="btn" >新建{{r.method_typezname}}模型</button>
+      {{/if}}
+    </div>
+    {{/if}} {{/each}}
+  </div>
+  {{!-- 渲染标志 --}}
+  {{!-- <span style='display:none'>{{_tag}}</span> --}}
+</div>
+
+{{!-- {{#input-text pname='cui text' pvalue='123'}}{{/input-text}}
+{{#input-date pname='cui date' pvalue='123' pid=123}}{{/input-date}}
+{{#input-radio pname='cui radio' pvalue='123' ptext='hahaha'}}{{/input-radio}}
+{{#input-radio pname='cui radio' pvalue='1' ptext='123'}}{{/input-radio}}
+{{#test-component }}{{/test-component}} --}}

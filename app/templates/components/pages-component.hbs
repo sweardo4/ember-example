@@ -1,0 +1,9 @@
+{{!-- {{pagination-pager count=count current=current tab=tab change=(action 'pageChanged')}} --}}
+{{common-loading isLoading=isLoading al='center'}}
+{{pagination-pager
+    count=count
+    current=current
+    pager=true
+    pagerSpread=true
+    change=(action 'pageChanged')
+    }}

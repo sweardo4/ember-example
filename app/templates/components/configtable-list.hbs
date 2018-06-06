@@ -1,0 +1,136 @@
+<section class="content">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title" id='action_title'>表设置</h3>
+          <button class="btn btn-info fr" {{action 'addView'}}>添加</button>
+        </div>
+        <!-- /.box-header -->
+         {{component 'common/error-danger' iserror=iserror}}
+        <div class="box-body">
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th style="width: 10px">id</th>
+                <th>表英文名称</th>
+                <th>表中文名称</th>
+                <th>所在数据库</th>
+                <th>操作</th>
+              </tr>
+               <tr>
+                <td colspan="5" style='text-align:center' >
+                    {{#common-loading isLoading = list al='center'}}{{/common-loading}}
+                </td>
+              </tr>
+              {{#each list as |table|}}
+              <tr>
+                <td>{{table.id}}</td>
+                <td>{{table.table_name}}</td>
+                <td>{{table.table_zname}}</td>
+                <td>{{table.db_zname}}</td>
+                <td>
+                  <button type="button" class="btn btn-info" {{action "chakan" table.id on="click" }}>查看</button>
+                  <button type="button" class="btn btn-warning" {{action "editView" table.id on="click" }}>修改</button>
+                  <button type="button" class="btn btn-danger" {{action "del" table.id on="click" }}>删除</button>
+                </td>
+              </tr>
+              {{/each}}
+
+            </tbody>
+          </table>
+          {{#pages-component tab='configtable' setSome =(action 'setSome')}}{{/pages-component}} 
+        </div>
+        <!-- /.box-body -->
+        <div class="box-body hidden mybox-body" id="add">
+          <form class="form-horizontal" {{action "add" on="submit" }}>
+            <div class="control-group">
+              <label class="control-label">表英文名称</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="表英文名称" value=table_name}}
+              </div><span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">表中文名称</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="表中文名称" value=table_zname}}
+              </div><span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">所在数据库</label>
+              <div class="controls">
+                <select {{action "bindSelectDb" 'select_add' on="change" }} id="select_add">
+                  <option value="" selected>请选择</option>
+                  {{#each dbData as |db|}}
+                  <option value={{db.id}}>{{db.db_zname}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-info" contenteditable="true">提交</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="box-body hidden mybox-body" id="edit">
+          <form class="form-horizontal" {{action "edit" on="submit" }}>
+            <div class="control-group">
+              <label class="control-label" id='id'></label>
+            </div>
+            <div class="control-group">
+              <label class="control-label">表英文名称</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="表英文名称" value=table_name}}
+              </div><span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">表中文名称</label>
+              <div class="controls">
+                {{input type="text"class="form-control" placeholder="表中文名称" value=table_zname}}
+              </div><span class="text-danger">*</span>
+            </div>
+            <div class="control-group">
+              <label class="control-label">所在数据库</label>
+              <div class="controls">
+                <select {{action "bindSelectDb" 'select_edit' on="change" }} id="select_edit">
+                  <option value="" selected>请选择</option>
+                  {{#each dbData as |db|}}
+                  <option value={{db.id}} >{{db.db_zname}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            </div>
+            <div class="control-group">
+              <label class="control-label"></label>
+              <div class="controls">
+                <button type="submit" class="btn btn-info" contenteditable="true">确认修改</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="box-body hidden" id="chakan">
+          <div class="control-group">
+            <label class="control-label"> id : {{id}}</label>
+          </div>
+          <div class="control-group">
+            <label class="control-label">表中文名称 : {{table_zname}}</label>
+          </div>
+          <div class="control-group">
+            <label class="control-label">表英文名称 : {{table_name}}</label>
+          </div>
+          <div class="control-group">
+            <label class="control-label">所在数据库 : {{db_zname}}</label>
+          </div>
+          
+        </div>
+      </div>
+      <!-- /.box -->
+    </div>
+  </div>
+
+</section>
