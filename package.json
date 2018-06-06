@@ -75,6 +75,6 @@
   "dependencies": {
     "admin-lte": "^2.4.2",
     "chart.js": "^2.7.1",
-    "jquery": "^1.12.4"
+    "jquery": "^3.0.0"
   }
 }
