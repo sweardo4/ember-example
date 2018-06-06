@@ -57,10 +57,8 @@ nginx
 uwsgi
 ember 
 
-
-
-
 ### uwsgi
+```
 [uwsgi]
 #项目目录
 ###引起错误的点
@@ -105,14 +103,11 @@ socket=/home/hdrest/uwsgi.sock
 #socket=127.0.0.1:8001
 chmod-socket=666
 #pythonpath=/home/cui/www/pythonenv/env/lib/python2.7/site-packages
-
-~                                                                                                                                                                                                           
-~                                                                         
-
-
+```
 
 nginx 
 
+```
 server {
         listen 8080;
         server_name  10.28.0.200;
@@ -140,7 +135,7 @@ server {
         }
 
 }
-
+```
 ## 浏览器兼容性
 > 系统支持IE9以上版本 IE更低版本未尝试
 > 可以修改config/targets.js文件内容来支持更多浏览器 
