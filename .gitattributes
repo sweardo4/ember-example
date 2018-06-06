@@ -1,0 +1,5 @@
+*.html linguist-language=Ember  
+*.hbs linguist-language=Ember  
+*.js linguist-language=Ember  
+*.sass linguist-language=Ember  
+*.css linguist-language=Ember  
